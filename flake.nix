@@ -1,6 +1,8 @@
 {
   description = "A collection of flake templates";
 
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+
   outputs = { self }: {
 
     templates = {
