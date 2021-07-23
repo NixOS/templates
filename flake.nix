@@ -15,6 +15,11 @@
         description = "A NixOS container running apache-httpd";
       };
 
+      gnu-hello = {
+        path = ./gnu-hello;
+        description = "An over-engineered flake for GNU Hello";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;

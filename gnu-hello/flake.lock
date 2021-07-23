@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "gnulib-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1626711388,
+        "narHash": "sha256-0PE9HwykwQVnMCur2EjX/QKtiTynwqwOpCrPuWArb3c=",
+        "ref": "master",
+        "rev": "c567dcac24dd90a2be051772d9a8c8bbf869221a",
+        "revCount": 22059,
+        "type": "git",
+        "url": "https://git.savannah.gnu.org/git/gnulib.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.savannah.gnu.org/git/gnulib.git"
+      }
+    },
+    "hello-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1609156442,
+        "narHash": "sha256-ZVdFQc7Y0Adl0xOELUymTGxM1o/GI1SOxYP3uUi+/lc=",
+        "ref": "master",
+        "rev": "1266c6eddac85222933a60540796e5833a19b98c",
+        "revCount": 455,
+        "type": "git",
+        "url": "https://git.savannah.gnu.org/git/hello.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.savannah.gnu.org/git/hello.git"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1626834727,
+        "narHash": "sha256-ToGgus+UImnLNaLgv+xfo/cI3J/NQl2KB5kvyErXays=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "63ee5cd99a2e193d5e4c879feb9683ddec23fa03",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-21.05",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "gnulib-src": "gnulib-src",
+        "hello-src": "hello-src",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
