@@ -20,6 +20,11 @@
         description = "An over-engineered flake for GNU Hello";
       };
 
+      rust-web-server = {
+        path = ./rust-web-server;
+        description = "A Rust web server including a NixOS module";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;

@@ -1,0 +1,11 @@
+[package]
+name = "rust-web-server"
+version = "0.1.0"
+authors = ["Eelco Dolstra <edolstra@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+actix-web = "3"
+
+[dev-dependencies]
+actix-rt = "1"

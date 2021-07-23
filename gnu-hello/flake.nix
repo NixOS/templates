@@ -111,12 +111,12 @@
                   };
                 };
 
-              testScript =
-                ''
-                  start_all()
-                  client.wait_for_unit("multi-user.target")
-                  client.succeed("hello")
-                '';
+                testScript =
+                  ''
+                    start_all()
+                    client.wait_for_unit("multi-user.target")
+                    client.succeed("hello")
+                  '';
               };
           }
         );
