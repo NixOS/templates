@@ -1,5 +1,5 @@
 {
-  description = "A Rust web server";
+  description = "A Rust web server including a NixOS module";
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-21.05";

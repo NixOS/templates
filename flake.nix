@@ -15,9 +15,9 @@
         description = "A NixOS container running apache-httpd";
       };
 
-      gnu-hello = {
-        path = ./gnu-hello;
-        description = "An over-engineered flake for GNU Hello";
+      c-hello = {
+        path = ./c-hello;
+        description = "An over-engineered Hello World in C";
       };
 
       rust-web-server = {

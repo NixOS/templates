@@ -1,18 +1,14 @@
 {
-  description = "An over-engineered flake for GNU Hello";
+  description = "An over-engineered Hello World in C";
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
 
-  # Upstream source tree(s).
-  inputs.hello-src = { url = git+https://git.savannah.gnu.org/git/hello.git; flake = false; };
-  inputs.gnulib-src = { url = git+https://git.savannah.gnu.org/git/gnulib.git; flake = false; };
-
-  outputs = { self, nixpkgs, hello-src, gnulib-src }:
+  outputs = { self, nixpkgs }:
     let
 
       # Generate a user-friendly version numer.
-      version = builtins.substring 0 8 hello-src.lastModifiedDate;
+      version = builtins.substring 0 8 self.lastModifiedDate;
 
       # System types to support.
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
@@ -33,19 +29,9 @@
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
-          src = hello-src;
+          src = ./.;
 
-          buildInputs = [ autoconf automake gettext gnulib perl gperf texinfo help2man ];
-
-          preConfigure = ''
-            mkdir -p .git # force BUILD_FROM_GIT
-            ./bootstrap --gnulib-srcdir=${gnulib-src} --no-git --skip-po
-          '';
-
-          meta = {
-            homepage = "https://www.gnu.org/software/hello/";
-            description = "A program to show a familiar, friendly greeting";
-          };
+          buildInputs = [ autoreconfHook ];
         };
 
       };
@@ -90,7 +76,7 @@
 
               buildPhase = ''
                 echo 'running some integration tests'
-                [[ $(hello) = 'Hello, world!' ]]
+                [[ $(hello) = 'Hello Nixers!' ]]
               '';
 
               installPhase = "mkdir -p $out";
