@@ -15,6 +15,11 @@
         description = "A NixOS container running apache-httpd";
       };
 
+      bash-hello = {
+        path = ./bash-hello;
+        description = "An over-engineered Hello World in bash";
+      };
+
       c-hello = {
         path = ./c-hello;
         description = "An over-engineered Hello World in C";
