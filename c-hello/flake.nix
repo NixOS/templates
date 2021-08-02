@@ -31,7 +31,7 @@
 
           src = ./.;
 
-          buildInputs = [ autoreconfHook ];
+          nativeBuildInputs = [ autoreconfHook ];
         };
 
       };
