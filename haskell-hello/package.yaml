@@ -1,6 +1,5 @@
 dependencies:
   - base == 4.*
-  - mtl
   - haskell-say
 executables:
   haskell-hello:
