@@ -19,10 +19,11 @@
          haskell-hello = nixpkgsFor.${system}.haskell-hello;
       });
       defaultPackage = forAllSystems (system: self.packages.${system}.haskell-hello);
+      checks = self.packages;
       devShell = forAllSystems (system: let haskellPackages = nixpkgsFor.${system}.haskellPackages;
         in haskellPackages.shellFor {
           packages = p: [self.packages.${system}.haskell-hello];
-          # withHoogle = true; # This might take a lot of time to recompile
+          withHoogle = true;
           buildInputs = with haskellPackages; [
             haskell-language-server
             ghcid
