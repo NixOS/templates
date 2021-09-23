@@ -1,4 +1,3 @@
--- HaskellHello.hs
 module Main where
 
 import HaskellSay (haskellSay)
