@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs, import-cargo }:
     let
 
-      # Generate a user-friendly version numer.
+      # Generate a user-friendly version number.
       version = "${builtins.substring 0 8 self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
       # System types to support.
