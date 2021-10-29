@@ -48,6 +48,10 @@
       haskell-hello = {
         path = ./haskell-hello;
         description = "A Hello World in Haskell with one dependency";
+
+      full = {
+        path = ./full;
+        description = "A template that shows all standard flake outputs";
       };
 
     };
