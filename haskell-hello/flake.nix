@@ -1,6 +1,6 @@
 {
   # inspired by: https://serokell.io/blog/practical-nix-flakes#packaging-existing-applications
-  description = "A Hellow World in Haskell with a dependency and a devShell";
+  description = "A Hello World in Haskell with a dependency and a devShell";
   inputs.nixpkgs.url = "nixpkgs";
   outputs = { self, nixpkgs }:
     let
