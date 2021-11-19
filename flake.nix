@@ -45,6 +45,11 @@
         description = "A default.nix and shell.nix for backward compatibility with Nix installations that don't support flakes";
       };
 
+      haskell-hello = {
+        path = ./haskell-hello;
+        description = "A Hello World in Haskell with one dependency";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
