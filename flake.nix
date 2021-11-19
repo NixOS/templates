@@ -14,6 +14,16 @@
         path = ./simple-container;
         description = "A NixOS container running apache-httpd";
       };
+    
+      python = {
+        path = ./python;
+        description = "Python template, using poetry2nix";
+      };
+
+      rust = {
+        path = ./rust;
+        description = "Rust template, using Naersk";
+      };
 
       bash-hello = {
         path = ./bash-hello;
