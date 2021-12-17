@@ -50,6 +50,11 @@
         description = "A Hello World in Haskell with one dependency";
       };
 
+      hercules-ci = {
+        path = ./hercules-ci;
+        description = "An example for Hercules-CI, containing only the necessary attributes for adding to your project.";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
