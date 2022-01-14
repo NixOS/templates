@@ -10,6 +10,9 @@ documentclass: scrartcl
 author: The author name goes here
 geometry: "left=4cm, right=3cm, top=2.5cm, bottom=2.5cm"
 numbersections: true
+---
+
+---
 abstract: |
     Your abstract here 
 ---
