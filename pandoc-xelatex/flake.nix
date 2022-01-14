@@ -4,28 +4,28 @@
   outputs = { self, nixpkgs }: {
 
     packages.x86_64-linux.report = (
-        let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        let
+            system = "x86_64-linux";
+            pkgs = nixpkgs.legacyPackages.${system};
             fonts = pkgs.makeFontsConf { fontDirectories = [ pkgs.dejavu_fonts ]; };
         in
           pkgs.stdenv.mkDerivation {
               name = "XelatexReport";
-              src = [ ./report.md ];
-              buildInputs = with pkgs; [ pandoc texlive.combined.scheme-small ];
+              src = ./.;
+              buildInputs = with pkgs; [
+                  pandoc
+                  haskellPackages.pandoc-crossref
+                  texlive.combined.scheme-small
+                  ];
               phases = ["unpackPhase" "buildPhase"];
-              unpackPhase = ''
-              for srcFile in $src; do
-                cp $srcFile $(stripHash $srcFile)
-              done
-              '';
               buildPhase = ''
               export FONTCONFIG_FILE=${fonts}
               mkdir -p $out
-              pandoc report.md --pdf-engine=xelatex -o $out/report.pdf
+              pandoc README.md --filter pandoc-crossref --citeproc --pdf-engine=xelatex -o $out/README.pdf
               '';
           }
         );
 
     defaultPackage.x86_64-linux = self.packages.x86_64-linux.report;
-
   };
 }
