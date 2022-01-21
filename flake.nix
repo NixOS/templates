@@ -55,6 +55,11 @@
         description = "An example for Hercules-CI, containing only the necessary attributes for adding to your project.";
       };
 
+      go-hello = {
+        path = ./go-hello;
+        description = "A simple Go package";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
