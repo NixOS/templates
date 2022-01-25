@@ -65,6 +65,11 @@
         description = "A report built with Pandoc, XeLaTex and a custom font";
       };
 
+      go-hello = {
+        path = ./go-hello;
+        description = "A simple Go package";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
