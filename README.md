@@ -63,4 +63,4 @@ Each template needs:
 # License
 
 Note: contributing implies licensing those contributions
-under the terms of [COPYING](COPYING), which is an MIT-like license.
+under the terms of [COPYING](COPYING), which is the MIT license.
