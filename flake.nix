@@ -14,7 +14,7 @@
         path = ./simple-container;
         description = "A NixOS container running apache-httpd";
       };
-    
+
       python = {
         path = ./python;
         description = "Python template, using poetry2nix";
@@ -50,14 +50,19 @@
         description = "A Hello World in Haskell with one dependency";
       };
 
-      pandoc-xelatex = {
-        path = ./pandoc-xelatex;
-        description = "A report built with Pandoc, XeLaTex and a custom font";
-      };
-
       hercules-ci = {
         path = ./hercules-ci;
         description = "An example for Hercules-CI, containing only the necessary attributes for adding to your project.";
+      };
+
+      full = {
+        path = ./full;
+        description = "A template that shows all standard flake outputs";
+      };
+
+      pandoc-xelatex = {
+        path = ./pandoc-xelatex;
+        description = "A report built with Pandoc, XeLaTex and a custom font";
       };
 
     };
