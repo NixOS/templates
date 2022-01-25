@@ -55,6 +55,11 @@
         description = "A template that shows all standard flake outputs";
       };
 
+      hercules-ci = {
+        path = ./hercules-ci;
+        description = "An example for Hercules-CI, containing only the necessary attributes for adding to your project.";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
