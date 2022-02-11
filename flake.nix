@@ -70,6 +70,11 @@
         description = "A simple Go package";
       };
 
+      empty = {
+        path = ./empty;
+        description = "A flake with no outputs";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
