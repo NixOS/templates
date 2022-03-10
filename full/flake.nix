@@ -115,10 +115,10 @@
     };
 
     # Utilized by `nix bundle -- .#<name>` (should be a .drv input, not program path?)
-    bundlers.example = nix-bundle.defaultBundler;
+    bundlers.x86_64-linux.example = nix-bundle.defaultBundler;
 
     # Utilized by `nix bundle -- .#<name>`
-    defaultBundler = self.bundlers.example;
+    defaultBundler.x86_64-linux = self.bundlers.x86_64-linux.example;
 
     # Utilized by `nix run . -- <args?>`
     defaultApp.x86_64-linux = self.apps.x86_64-linux.hello;
