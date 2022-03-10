@@ -92,7 +92,7 @@
 
   inputs.c-hello.url = "github:NixOS/templates?dir=c-hello";
   inputs.rust-web-server.url = "github:NixOS/templates?dir=rust-web-server";
-  inputs.nix-bundle.url = "github:matthewbauer/nix-bundle";
+  inputs.nix-bundle.url = "github:NixOS/bundlers";
 
   # Work-in-progress: refer to parent/sibling flakes in the same repository
   # inputs.c-hello.url = "path:../c-hello";
@@ -115,10 +115,10 @@
     };
 
     # Utilized by `nix bundle -- .#<name>` (should be a .drv input, not program path?)
-    bundlers.example = nix-bundle.defaultBundler;
+    bundlers.x86_64-linux.example = nix-bundle.bundlers.x86_64-linux.toArx;
 
     # Utilized by `nix bundle -- .#<name>`
-    defaultBundler = self.bundlers.example;
+    defaultBundler.x86_64-linux = self.bundlers.x86_64-linux.example;
 
     # Utilized by `nix run . -- <args?>`
     defaultApp.x86_64-linux = self.apps.x86_64-linux.hello;
