@@ -9,8 +9,11 @@
   outputs = { self, nixpkgs, import-cargo }:
     let
 
+      # to work with older version of flakes
+      lastModifiedDate = self.lastModifiedDate or self.lastModified or "19700101";
+
       # Generate a user-friendly version number.
-      version = "${builtins.substring 0 8 self.lastModifiedDate}-${self.shortRev or "dirty"}";
+      version = "${builtins.substring 0 8 lastModifiedDate}-${self.shortRev or "dirty"}";
 
       # System types to support.
       supportedSystems = [ "x86_64-linux" ];
