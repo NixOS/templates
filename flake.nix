@@ -86,6 +86,11 @@
         '';
       };
 
+      utils-generic = {
+        path = ./utils-generic;
+        description = "Simple, all-rounder template with utils enabled and devShell populated";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
