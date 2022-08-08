@@ -1,0 +1,39 @@
+-- Instructions on how to write this file are in the Cabal
+-- documentation, which can be found here:
+--   http://haskell.org/cabal/release/cabal-latest/doc/users-guide/
+
+name: hello
+version: 1.0.0.2
+license: BSD3
+license-file: LICENSE
+copyright: (c) Simon Marlow
+author: Simon Marlow
+maintainer: Simon Marlow <marlowsd@gmail.com>
+bug-reports: mailto:marlowsd@gmail.com
+stability: stable
+homepage: http://www.haskell.org/hello/
+synopsis: Hello World, an example package
+category: Console, Text
+cabal-version: >= 1.6
+build-type: Simple
+
+Description:
+  This is an implementation of the classic "Hello World" program in
+  Haskell, as an example of how to create a minimal Haskell
+  application using Cabal and Hackage.  Please submit any suggestions and
+  improvements.
+
+source-repository head
+  type:     darcs
+  location: http://darcs.haskell.org/hello/
+
+flag threaded
+  default: False
+
+executable hello
+  hs-source-dirs: src
+  main-is: hello.hs
+  build-depends: base >= 4.2 && < 5
+
+  if flag(threaded)
+     ghc-options: -threaded
