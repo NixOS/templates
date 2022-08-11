@@ -21,6 +21,6 @@
 
 * Check that you're using the HLS from `/nix/store/...`
     ```sh
-    which haskell-language-server-wrapper
+    $ which haskell-language-server-wrapper
     ```
 
