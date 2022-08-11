@@ -1,6 +1,4 @@
 module Main where
 
-import HaskellSay (haskellSay)
-
 main :: IO ()
-main = haskellSay "Hello Haskell Nixers!"
+main = print "Hello Haskell Nixers!"

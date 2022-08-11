@@ -1,6 +1,9 @@
+name: haskell-hello
+
 dependencies:
-  - base == 4.*
-  - haskell-say
+- base >= 4.7 && < 5
+
 executables:
   haskell-hello:
-    main: Main.hs
+    main:                Main.hs
+    source-dirs:         ./
