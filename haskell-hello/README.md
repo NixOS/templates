@@ -19,6 +19,12 @@
     
     * E.g., you can use [VS Code](https://code.visualstudio.com/) with [direnv](https://marketplace.visualstudio.com/items?itemName=mkhl.direnv) and [Haskell](https://marketplace.visualstudio.com/items?itemName=haskell.haskell) extensions. You will need to set `"haskell.serverExecutablePath": "haskell-language-server-wrapper",` in `settings.json` (see [this](https://github.com/haskell/vscode-haskell#path-to-server-executable)).
 
+    * Alternatively, you can make HLS available before you start an IDE, e.g.:
+        ```sh
+        cd haskell-hello
+        nix develop -c code .
+        ```
+
 * Check that you're using the HLS from `/nix/store/...`
     ```sh
     $ which haskell-language-server-wrapper
