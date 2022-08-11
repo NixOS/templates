@@ -1,4 +1,9 @@
 # haskell-hello
+ 
+* Change directory
+    ```sh
+    $ cd haskell-hello
+    ```
 
 * Run 
     ```sh
@@ -21,8 +26,7 @@
 
     * Alternatively, you can make HLS available before you start an IDE, e.g.:
         ```sh
-        cd haskell-hello
-        nix develop -c code .
+        $ nix develop -c code .
         ```
 
 * Check that you're using the HLS from `/nix/store/...`
