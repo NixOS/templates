@@ -2,7 +2,7 @@
   # inspired by: https://serokell.io/blog/practical-nix-flakes#packaging-existing-applications
   description = "A Hello World in Haskell with a dependency and a devShell";
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -34,11 +34,8 @@
           in
           haskellPackages.shellFor {
             packages = p: [ pkgs.haskell-hello ];
-            withHoogle = true;
             buildInputs = with haskellPackages; [
               haskell-language-server
-              ghcid
-              cabal-install
               stack
             ];
             # Change the prompt to show that you are in a devShell

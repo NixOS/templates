@@ -1,0 +1,5 @@
+.stack-work
+.direnv
+.envrc
+*.cabal
+result
