@@ -1,0 +1,26 @@
+name: example-package
+
+dependencies:
+  - base == 4.*
+  - haskell-say
+
+library:
+  source-dirs: src
+  exposed-modules: ExampleLibrary
+
+executables:
+  example-executable:
+    main: Main.hs
+    dependencies:
+      - example-package
+
+tests:
+  spec:
+    main: Spec.hs
+    source-dirs:
+      - test
+      - src
+    dependencies:
+      - hspec == 2.*
+      - HUnit >= 1.6.0.0
+    build-tools: hspec-discover
