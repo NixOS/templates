@@ -13,11 +13,6 @@
       in
       {
         defaultPackage = naersk-lib.buildPackage ./.;
-
-        defaultApp = utils.lib.mkApp {
-          drv = self.defaultPackage."${system}";
-        };
-
         devShell = with pkgs; mkShell {
           buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy ];
           RUST_SRC_PATH = rustPlatform.rustLibSrc;
