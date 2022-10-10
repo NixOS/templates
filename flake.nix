@@ -77,8 +77,8 @@
         description = "A simple Go package";
       };
 
-      haskell.nix = {
-        path = ./go-hello;
+      haskell-nix = {
+        path = ./haskell.nix;
         description = "An haskell.nix template using hix";
         welcomeText = ''
           You just created an haskell.nix template using hix. Read more about it here:
