@@ -86,6 +86,17 @@
         '';
       };
 
+      package = {
+        path = ./package;
+        description = "An standard package template";
+        welcomeText = ''
+          You just created a directory for a Nix package.
+          You can refer to this package in other Nix files using:
+
+            pkgs.callPackage ./package-directory { }
+        '';
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
