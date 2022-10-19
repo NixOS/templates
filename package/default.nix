@@ -12,14 +12,14 @@ stdenv.mkDerivation rec {
 
   # src = fetchurl {
   #   url = "https://";
-  #   sha256 = lib.fakeHash;
+  #   hash = lib.fakeHash;
   # };
 
   # src = fetchFromGitHub {
   #   owner = "owner";
   #   repo = pname;
   #   rev = "v${version}";
-  #   sha256 = lib.fakeHash;
+  #   hash = lib.fakeHash;
   # };
 
   # src = fetchFromGitLab {
