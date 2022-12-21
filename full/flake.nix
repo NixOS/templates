@@ -78,8 +78,8 @@
   inputs.nixpkgs.url = "nixpkgs";
   inputs.nixpkgs.follows = "nixops/nixpkgs";
 
-  # The value of the follows attribute is aated sequence of input names denoting the pa>
-  # of inputs to be followed from the root flake.  Overrides and follows can be combined, e.g.
+  # The value of the follows attribute is a sequence of input names denoting the path
+  # of inputs to be followed from the root flake. Overrides and follows can be combined, e.g.
   inputs.nixops.url = "nixops";
   inputs.dwarffs.url = "dwarffs";
   inputs.dwarffs.inputs.nixpkgs.follows = "nixpkgs";
