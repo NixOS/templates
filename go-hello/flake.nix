@@ -7,8 +7,11 @@
   outputs = { self, nixpkgs }:
     let
 
+      # to work with older version of flakes
+      lastModifiedDate = self.lastModifiedDate or self.lastModified or "19700101";
+
       # Generate a user-friendly version number.
-      version = builtins.substring 0 8 self.lastModifiedDate;
+      version = builtins.substring 0 8 lastModifiedDate;
 
       # System types to support.
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
@@ -46,6 +49,17 @@
             #vendorSha256 = pkgs.lib.fakeSha256;
 
             vendorSha256 = "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=";
+          };
+        });
+      
+      # Add dependencies that are only needed for development
+      devShells = forAllSystems (system:
+        let 
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ go gopls gotools go-tools ];
           };
         });
 

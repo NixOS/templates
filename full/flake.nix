@@ -22,8 +22,8 @@
   # The master branch of the NixOS/nixpkgs repository on GitHub.
   inputs.nixpkgsGitHub.url = "github:NixOS/nixpkgs";
 
-  # The 20.09 branch of the NixOS/nixpkgs repository on GitHub.
-  inputs.nixpkgsGitHubBranch.url = "github:NixOS/nixpkgs/20.09";
+  # The nixos-20.09 branch of the NixOS/nixpkgs repository on GitHub.
+  inputs.nixpkgsGitHubBranch.url = "github:NixOS/nixpkgs/nixos-20.09";
 
   # A specific revision of the NixOS/nixpkgs repository on GitHub.
   inputs.nixpkgsGitHubRevision.url = "github:NixOS/nixpkgs/a3a3dda3bacf61e8a39258a0ed9c924eeca8e293";
@@ -78,8 +78,8 @@
   inputs.nixpkgs.url = "nixpkgs";
   inputs.nixpkgs.follows = "nixops/nixpkgs";
 
-  # The value of the follows attribute is aated sequence of input names denoting the pa>
-  # of inputs to be followed from the root flake.  Overrides and follows can be combined, e.g.
+  # The value of the follows attribute is a sequence of input names denoting the path
+  # of inputs to be followed from the root flake. Overrides and follows can be combined, e.g.
   inputs.nixops.url = "nixops";
   inputs.dwarffs.url = "dwarffs";
   inputs.dwarffs.inputs.nixpkgs.follows = "nixpkgs";
@@ -92,7 +92,7 @@
 
   inputs.c-hello.url = "github:NixOS/templates?dir=c-hello";
   inputs.rust-web-server.url = "github:NixOS/templates?dir=rust-web-server";
-  inputs.nix-bundle.url = "github:matthewbauer/nix-bundle";
+  inputs.nix-bundle.url = "github:NixOS/bundlers";
 
   # Work-in-progress: refer to parent/sibling flakes in the same repository
   # inputs.c-hello.url = "path:../c-hello";
@@ -115,10 +115,10 @@
     };
 
     # Utilized by `nix bundle -- .#<name>` (should be a .drv input, not program path?)
-    bundlers.example = nix-bundle.defaultBundler;
+    bundlers.x86_64-linux.example = nix-bundle.bundlers.x86_64-linux.toArx;
 
     # Utilized by `nix bundle -- .#<name>`
-    defaultBundler = self.bundlers.example;
+    defaultBundler.x86_64-linux = self.bundlers.x86_64-linux.example;
 
     # Utilized by `nix run . -- <args?>`
     defaultApp.x86_64-linux = self.apps.x86_64-linux.hello;

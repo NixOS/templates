@@ -58,6 +58,13 @@
       full = {
         path = ./full;
         description = "A template that shows all standard flake outputs";
+        welcomeText = ''
+          You just created a template that will show you all standard flake outputs.
+
+          Read more about it here:
+
+            https://github.com/NixOS/templates/tree/master/full
+        '';
       };
 
       pandoc-xelatex = {
@@ -73,6 +80,15 @@
       empty = {
         path = ./empty;
         description = "A flake with no outputs";
+      };
+
+      haskell-nix = {
+        path = ./haskell.nix;
+        description = "An haskell.nix template using hix";
+        welcomeText = ''
+          You just created an haskell.nix template using hix. Read more about it here:
+          https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
+        '';
       };
 
     };
