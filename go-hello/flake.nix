@@ -51,6 +51,17 @@
             vendorSha256 = "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=";
           };
         });
+      
+      # Add dependencies that are only needed for development
+      devShells = forAllSystems (system:
+        let 
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ go gopls gotools go-tools ];
+          };
+        });
 
       # The default package for 'nix build'. This makes sense if the
       # flake provides only one package or there is a clear "main"
