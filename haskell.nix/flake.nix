@@ -27,6 +27,8 @@
         flake = pkgs.hixProject.flake {};
       in flake // {
         legacyPackages = pkgs;
+
+        packages.default = flake.packages."hello:exe:hello";
       });
 
   # --- Flake Local Nix Configuration ----------------------------
