@@ -30,7 +30,8 @@
       overlay = final: prev: {
 
         hello = with final; stdenv.mkDerivation rec {
-          name = "hello-${version}";
+          pname = "hello";
+          inherit version;
 
           src = ./.;
 
@@ -71,11 +72,12 @@
 
             # Additional tests, if applicable.
             test = stdenv.mkDerivation {
-              name = "hello-test-${version}";
+              pname = "hello-test";
+              inherit version;
 
               buildInputs = [ hello ];
 
-              unpackPhase = "true";
+              dontUnpack = true;
 
               buildPhase = ''
                 echo 'running some integration tests'
