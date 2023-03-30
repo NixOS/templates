@@ -1,0 +1,8 @@
+resolver: lts-19.18
+
+packages:
+- .
+
+# https://haskell-language-server.readthedocs.io/en/latest/configuration.html#how-to-show-local-documentation-on-hover
+ghc-options:
+  '$everything': -haddock

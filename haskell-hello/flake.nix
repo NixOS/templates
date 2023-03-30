@@ -1,36 +1,45 @@
 {
   # inspired by: https://serokell.io/blog/practical-nix-flakes#packaging-existing-applications
   description = "A Hello World in Haskell with a dependency and a devShell";
-  inputs.nixpkgs.url = "nixpkgs";
-  outputs = { self, nixpkgs }:
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    with flake-utils.lib;
     let
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
-      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
-      nixpkgsFor = forAllSystems (system: import nixpkgs {
-        inherit system;
-        overlays = [ self.overlay ];
-      });
+      supportedSystems = with system; [ x86_64-linux ];
     in
     {
       overlay = (final: prev: {
-        haskell-hello = final.haskellPackages.callCabal2nix "haskell-hello" ./. {};
+        haskell-hello = final.haskellPackages.callCabal2nix "haskell-hello" ./. { };
       });
-      packages = forAllSystems (system: {
-         haskell-hello = nixpkgsFor.${system}.haskell-hello;
+    }
+    // eachSystem supportedSystems (system:
+      let
+        pkgs = import nixpkgs
+          {
+            inherit system;
+            overlays = [ self.overlay ];
+          };
+      in
+      {
+        packages = {
+          haskell-hello = pkgs.haskell-hello;
+          default = pkgs.haskell-hello;
+        };
+        devShell =
+          let haskellPackages = pkgs.haskellPackages;
+          in
+          haskellPackages.shellFor {
+            packages = p: [ pkgs.haskell-hello ];
+            buildInputs = with haskellPackages; [
+              haskell-language-server
+              stack
+            ];
+            # Change the prompt to show that you are in a devShell
+            shellHook = "export PS1='\\e[1;34mdev > \\e[0m'";
+          };
       });
-      defaultPackage = forAllSystems (system: self.packages.${system}.haskell-hello);
-      checks = self.packages;
-      devShell = forAllSystems (system: let haskellPackages = nixpkgsFor.${system}.haskellPackages;
-        in haskellPackages.shellFor {
-          packages = p: [self.packages.${system}.haskell-hello];
-          withHoogle = true;
-          buildInputs = with haskellPackages; [
-            haskell-language-server
-            ghcid
-            cabal-install
-          ];
-        # Change the prompt to show that you are in a devShell
-        shellHook = "export PS1='\\e[1;34mdev > \\e[0m'";
-        });
-  };
 }
