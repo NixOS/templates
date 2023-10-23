@@ -35,6 +35,20 @@
         description = "An over-engineered Hello World in C";
       };
 
+      ruby = {
+        path = ./ruby;
+        description = "Flake for building ruby gems" ;
+        welcomeText = ''
+          # Simple Ruby Gem Template
+          ## Intended usage
+          The intended usage of this flake is to facilitate building ruby gems
+
+          ## More info
+          - [Ruby language](https://www.ruby-lang.org/)
+          - [Ruby in the NixOS manual](https://nixos.org/manual/nixpkgs/stable/#sec-language-ruby)
+        '';
+      };
+
       rust-web-server = {
         path = ./rust-web-server;
         description = "A Rust web server including a NixOS module";
