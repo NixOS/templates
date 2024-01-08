@@ -17,4 +17,5 @@
 /.github/CODEOWNERS          @garbas
 
 /full                        @tomberek
+/empty                       @schuelermine
 /dotnet                      @Smaug123

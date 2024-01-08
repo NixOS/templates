@@ -82,6 +82,11 @@
         description = "A simple Go package";
       };
 
+      empty = {
+        path = ./empty;
+        description = "A flake with no outputs";
+      };
+
       haskell-nix = {
         path = ./haskell.nix;
         description = "An haskell.nix template using hix";
