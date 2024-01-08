@@ -1,0 +1,5 @@
+bin/
+obj/
+result
+*.DotSettings.user
+.idea/
