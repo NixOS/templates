@@ -18,6 +18,11 @@
       python = {
         path = ./python;
         description = "Python template, using poetry2nix";
+        welcomeText = ''
+          # Getting started
+          - Run `nix develop`
+          - Run `poetry run python -m sample_package`
+        '';
       };
 
       rust = {
@@ -89,6 +94,16 @@
           You just created an haskell.nix template using hix. Read more about it here:
           https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
         '';
+      };
+
+      utils-generic = {
+        path = ./utils-generic;
+        description = "Simple, all-rounder template with utils enabled and devShell populated";
+      };
+
+      dotnet = {
+        path = ./dotnet;
+        description = "A .NET application and test project";
       };
 
     };

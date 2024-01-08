@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HelloWorld", "HelloWorld\HelloWorld.fsproj", "{289B2402-80C5-47EB-896F-BEF9A751DE61}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HelloWorld.Test", "HelloWorld.Test\HelloWorld.Test.fsproj", "{4F472FBB-36FB-4073-A7B1-FC102D2D209E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{289B2402-80C5-47EB-896F-BEF9A751DE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289B2402-80C5-47EB-896F-BEF9A751DE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289B2402-80C5-47EB-896F-BEF9A751DE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289B2402-80C5-47EB-896F-BEF9A751DE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F472FBB-36FB-4073-A7B1-FC102D2D209E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F472FBB-36FB-4073-A7B1-FC102D2D209E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F472FBB-36FB-4073-A7B1-FC102D2D209E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F472FBB-36FB-4073-A7B1-FC102D2D209E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

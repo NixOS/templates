@@ -132,7 +132,7 @@
     # # Same idea as overlay but a list or attrset of them.
     overlays = { exampleOverlay = self.overlay; };
 
-    # Default module, for use in dependent flakes
+    # Default module, for use in dependent flakes. Deprecated, use nixosModules.default instead.
     nixosModule = { config, ... }: { options = {}; config = {}; };
 
     # Same idea as nixosModule but a list or attrset of them.
