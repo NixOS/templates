@@ -91,6 +91,11 @@
         '';
       };
 
+      dotnet = {
+        path = ./dotnet;
+        description = "A .NET application and test project";
+      };
+
     };
 
     defaultTemplate = self.templates.trivial;
