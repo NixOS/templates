@@ -57,7 +57,7 @@
     id = "nixpkgs";
   };
 
-  # Non-flake inputs. These provde a variable of type path.
+  # Non-flake inputs. These provide a variable of type path.
   inputs.grcov = {
     type = "github";
     owner = "mozilla";
