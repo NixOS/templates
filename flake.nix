@@ -96,6 +96,16 @@
         '';
       };
 
+      haskell-flake = {
+        path = ./haskell-flake;
+        description = "A haskell-flake template";
+        welcomeText = ''
+          https://github.com/srid/haskell-flake
+          Copied from: https://github.com/srid/haskell-flake/tree/0.4.0/example
+          https://zero-to-flakes.com/haskell-flake/
+        '';
+      };
+
       utils-generic = {
         path = ./utils-generic;
         description = "Simple, all-rounder template with utils enabled and devShell populated";
