@@ -100,9 +100,8 @@
         path = ./haskell-flake;
         description = "A haskell-flake template";
         welcomeText = ''
-          https://github.com/srid/haskell-flake
-          Copied from: https://github.com/srid/haskell-flake/tree/0.4.0/example
-          https://zero-to-flakes.com/haskell-flake/
+          You just created a haskell-flake template.
+          See the README or https://github.com/srid/haskell-flake.
         '';
       };
 
