@@ -77,6 +77,11 @@
         description = "A report built with Pandoc, XeLaTex and a custom font";
       };
 
+      latexmk = {
+        path = ./latexmk;
+        description = "A simple LaTeX template for writing documents with latexmk";
+      };
+
       go-hello = {
         path = ./go-hello;
         description = "A simple Go package";
