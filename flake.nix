@@ -96,6 +96,15 @@
         '';
       };
 
+      haskell-flake = {
+        path = ./haskell-flake;
+        description = "A haskell-flake template";
+        welcomeText = ''
+          You just created a haskell-flake template.
+          See the README or https://github.com/srid/haskell-flake.
+        '';
+      };
+
       utils-generic = {
         path = ./utils-generic;
         description = "Simple, all-rounder template with utils enabled and devShell populated";
