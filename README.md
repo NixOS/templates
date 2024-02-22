@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # Official Nix templates
 
 Templates are there to help you start your Nix project.
@@ -64,3 +65,22 @@ Each template needs:
 
 Note: contributing implies licensing those contributions
 under the terms of [COPYING](COPYING), which is the MIT license.
+=======
+# NixOS/templates
+
+A repository for generating Nix Flake for projects in different languages.
+
+## Examples
+
+Create a flake based on the Rust template
+
+```
+nix flake init -t github:NixOS/templates#rust
+```
+
+Create a flake based on the Python template
+
+```
+nix flake init -t github:NixOS/templates#python
+```
+>>>>>>> Stashed changes
