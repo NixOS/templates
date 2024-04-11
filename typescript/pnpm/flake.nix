@@ -11,19 +11,9 @@
           config = {allowUnfree = true;};
           inherit system;
         });
-                  
-        extensions = (with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-        ]);
-
-        vscodium-with-extensions = pkgs.vscode-with-extensions.override {
-          vscode = pkgs.vscodium;
-          vscodeExtensions = extensions;
-        };
       in {
         devShell = pkgs.mkShell {
           buildInputs=[
-            vscodium-with-extensions
             pkgs.nodePackages.pnpm
             pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
