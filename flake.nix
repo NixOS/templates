@@ -120,9 +120,10 @@
         description = "A template combining a node webserver and a dev environment
             for frontend typescript development";
         welcomeText = ''
-          run `nix develop` to enter the development environment
-          run `pnpm install` and then `pnpm start` to open a live reloading website
-          vscodium with the right extensions is included so `codium .` would open the editor
+          # Getting Started
+          - run `nix develop` to enter the development environment
+          - run `pnpm install` and then `pnpm start` to open a live reloading website
+          - vscodium with the right extensions is included so `codium .` would open the editor
         '';
       };
     };
