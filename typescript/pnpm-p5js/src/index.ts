@@ -10,7 +10,7 @@ function setup() {
   strokeWeight(50)
   fill("yellow")
   stroke("black")
-  circle(windowWidth/2.0, windowHeight/2.0, p5.min(windowWidth, windowHeight) * 0.3)
+  circle(windowWidth/2.0, windowHeight/2.0, min(windowWidth, windowHeight) * 0.3)
 }
 
 function draw() {
