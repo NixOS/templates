@@ -124,7 +124,7 @@
           run `pnpm install` and then `pnpm start` to open a live reloading website
           vscodium with the right extensions is included so `codium .` would open the editor
         '';
-      }
+      };
     };
 
     defaultTemplate = self.templates.trivial;
