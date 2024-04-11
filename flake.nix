@@ -122,10 +122,23 @@
         welcomeText = ''
           # Getting Started
           - run `nix develop` to enter the development environment
-          - run `pnpm install` and then `pnpm start` to open a live reloading website
-          - vscodium with the right extensions is included so `codium .` would open the editor
+          - run `pnpm install` to install the packaged
+          - run `pnpm start` to open a live reloading website
         '';
       };
+
+      typescript-p5js = {
+        path = ./typescript/pnpm-p5js;
+        description = "A template combining a node webserver and a dev environment
+            for frontend typescript development";
+        welcomeText = ''
+          # Getting Started
+          - run `nix develop` to enter the development environment
+          - run `pnpm install` to install the packaged
+          - run `pnpm start` to open a live reloading website
+        '';
+      };
+    };
     };
 
     defaultTemplate = self.templates.trivial;
