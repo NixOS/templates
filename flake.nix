@@ -139,7 +139,6 @@
         '';
       };
     };
-    };
 
     defaultTemplate = self.templates.trivial;
 
