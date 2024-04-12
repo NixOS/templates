@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import * as p5Globals from 'p5/global'
-import p5 from 'p5'
+import 'p5'
 
 
 function setup() {
