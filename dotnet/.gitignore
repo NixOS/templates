@@ -3,3 +3,4 @@ obj/
 result
 *.DotSettings.user
 .idea/
+.analyzerpackages/
