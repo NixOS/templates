@@ -5,7 +5,6 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
     ...
@@ -15,64 +14,51 @@
         pkgs = import nixpkgs {inherit system;};
         projectFile = "./HelloWorld/HelloWorld.fsproj";
         testProjectFile = "./HelloWorld.Test/HelloWorld.Test.fsproj";
-        pname = "dotnet-helloworld";
-        dotnet-sdk = pkgs.dotnet-sdk_7;
-        dotnet-runtime = pkgs.dotnetCorePackages.runtime_7_0;
+        dotnet-sdk = pkgs.dotnet-sdk_8;
+        dotnet-runtime = pkgs.dotnetCorePackages.runtime_8_0;
         version = "0.0.1";
-        dotnetSixTool = toolName: toolVersion: sha256:
+        dotnetSixTool = dllOverride: toolName: let
+          toolVersion = (builtins.fromJSON (builtins.readFile ./.config/dotnet-tools.json)).tools."${toolName}".version;
+          sha256 = (builtins.head (builtins.filter (elem: elem.pname == toolName) ((import ./nix/deps.nix) {fetchNuGet = x: x;}))).sha256;
+        in
           pkgs.stdenvNoCC.mkDerivation rec {
             name = toolName;
             version = toolVersion;
             nativeBuildInputs = [pkgs.makeWrapper];
             src = pkgs.fetchNuGet {
+              inherit version sha256;
               pname = name;
-              version = version;
-              sha256 = sha256;
               installPhase = ''mkdir -p $out/bin && cp -r tools/net6.0/any/* $out/bin'';
             };
-            installPhase = ''
+            installPhase = let
+              dll =
+                if isNull dllOverride
+                then name
+                else dllOverride;
+            in ''
               runHook preInstall
               mkdir -p "$out/lib"
               cp -r ./bin/* "$out/lib"
-              makeWrapper "${dotnet-runtime}/bin/dotnet" "$out/bin/${name}" --add-flags "$out/lib/${name}.dll"
+              makeWrapper "${dotnet-runtime}/bin/dotnet" "$out/bin/${name}" --add-flags "$out/lib/${dll}.dll"
               runHook postInstall
             '';
           };
       in {
         packages = {
-          fantomas = dotnetSixTool "fantomas" "5.1.5" "sha256-qzIs6JiZV9uHUS0asrgWLAbaKJsNtr5h01fJxmOR2Mc=";
-          fetchDeps = let
-            flags = [];
-            runtimeIds = map (system: pkgs.dotnetCorePackages.systemToDotnetRid system) dotnet-sdk.meta.platforms;
-          in
-            pkgs.writeShellScriptBin "fetch-${pname}-deps" (builtins.readFile (pkgs.substituteAll {
-              src = ./nix/fetchDeps.sh;
-              pname = pname;
-              binPath = pkgs.lib.makeBinPath [pkgs.coreutils dotnet-sdk (pkgs.nuget-to-nix.override {inherit dotnet-sdk;})];
-              projectFiles = toString (pkgs.lib.toList projectFile);
-              testProjectFiles = toString (pkgs.lib.toList testProjectFile);
-              rids = pkgs.lib.concatStringsSep "\" \"" runtimeIds;
-              packages = dotnet-sdk.packages;
-              storeSrc = pkgs.srcOnly {
-                src = ./.;
-                pname = pname;
-                version = version;
-              };
-            }));
+          fantomas = dotnetSixTool null "fantomas";
+          fsharp-analyzers = dotnetSixTool "FSharp.Analyzers.Cli" "fsharp-analyzers";
           default = pkgs.buildDotnetModule {
+            inherit projectFile testProjectFile dotnet-sdk dotnet-runtime;
             pname = "HelloWorld";
             version = version;
             src = ./.;
-            projectFile = projectFile;
-            nugetDeps = ./nix/deps.nix;
+            nugetDeps = ./nix/deps.nix; # run `nix build .#default.passthru.fetch-deps && ./result` and put the result here
             doCheck = true;
-            dotnet-sdk = dotnet-sdk;
-            dotnet-runtime = dotnet-runtime;
           };
         };
         devShells = {
           default = pkgs.mkShell {
-            buildInputs = [pkgs.dotnet-sdk_7 pkgs.git pkgs.alejandra pkgs.nodePackages.markdown-link-check];
+            buildInputs = [dotnet-sdk pkgs.git pkgs.alejandra pkgs.nodePackages.markdown-link-check];
           };
         };
       }
