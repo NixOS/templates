@@ -2,7 +2,7 @@
   # This is a template created by `hix init`
   inputs.haskellNix.url = "github:input-output-hk/haskell.nix";
   inputs.nixpkgs.follows = "haskellNix/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.flake-utils.follows = "haskellNix/flake-utils";
   outputs = { self, nixpkgs, flake-utils, haskellNix }:
     let
       supportedSystems = [
@@ -28,7 +28,7 @@
       in flake // {
         legacyPackages = pkgs;
 
-        packages.default = flake.packages."hello:exe:hello";
+        packages = flake.packages // { default = flake.packages."hello:exe:hello"; };
       });
 
   # --- Flake Local Nix Configuration ----------------------------
