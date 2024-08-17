@@ -1,0 +1,3 @@
+* eol=auto
+*.sh eol=lf
+*.nix eol=lf

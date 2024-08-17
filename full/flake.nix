@@ -22,8 +22,8 @@
   # The master branch of the NixOS/nixpkgs repository on GitHub.
   inputs.nixpkgsGitHub.url = "github:NixOS/nixpkgs";
 
-  # The 20.09 branch of the NixOS/nixpkgs repository on GitHub.
-  inputs.nixpkgsGitHubBranch.url = "github:NixOS/nixpkgs/20.09";
+  # The nixos-20.09 branch of the NixOS/nixpkgs repository on GitHub.
+  inputs.nixpkgsGitHubBranch.url = "github:NixOS/nixpkgs/nixos-20.09";
 
   # A specific revision of the NixOS/nixpkgs repository on GitHub.
   inputs.nixpkgsGitHubRevision.url = "github:NixOS/nixpkgs/a3a3dda3bacf61e8a39258a0ed9c924eeca8e293";
@@ -57,7 +57,7 @@
     id = "nixpkgs";
   };
 
-  # Non-flake inputs. These provde a variable of type path.
+  # Non-flake inputs. These provide a variable of type path.
   inputs.grcov = {
     type = "github";
     owner = "mozilla";
@@ -78,8 +78,8 @@
   inputs.nixpkgs.url = "nixpkgs";
   inputs.nixpkgs.follows = "nixops/nixpkgs";
 
-  # The value of the follows attribute is aated sequence of input names denoting the pa>
-  # of inputs to be followed from the root flake.  Overrides and follows can be combined, e.g.
+  # The value of the follows attribute is a sequence of input names denoting the path
+  # of inputs to be followed from the root flake. Overrides and follows can be combined, e.g.
   inputs.nixops.url = "nixops";
   inputs.dwarffs.url = "dwarffs";
   inputs.dwarffs.inputs.nixpkgs.follows = "nixpkgs";
@@ -132,7 +132,7 @@
     # # Same idea as overlay but a list or attrset of them.
     overlays = { exampleOverlay = self.overlay; };
 
-    # Default module, for use in dependent flakes
+    # Default module, for use in dependent flakes. Deprecated, use nixosModules.default instead.
     nixosModule = { config, ... }: { options = {}; config = {}; };
 
     # Same idea as nixosModule but a list or attrset of them.
