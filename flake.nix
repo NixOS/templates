@@ -136,10 +136,7 @@
           '';
         };
 
-        utils-generic = {
-          path = ./utils-generic;
-          description = "Simple, all-rounder template with utils enabled and devShell populated";
-        };
+        utils-generic = self.templates.multi-system;
 
         dotnet = {
           path = ./dotnet;
