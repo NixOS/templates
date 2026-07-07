@@ -10,10 +10,10 @@
         pkgs = (import (inputs.nixpkgs) { inherit system; });
       in {
         devShell = pkgs.mkShell {
-          buildInputs=[
-            pkgs.nodePackages.pnpm
-            pkgs.nodePackages.typescript
-            pkgs.nodePackages.typescript-language-server
+          buildInputs = [
+            pkgs.pnpm
+            pkgs.typescript
+            pkgs.typescript-language-server
           ];
         };
       }
