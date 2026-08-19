@@ -10,6 +10,11 @@
         description = "A very basic flake";
       };
 
+      devshell = {
+        path = ./devshell;
+        description = "A basic flake providing a devShell";
+      };
+
       simpleContainer = {
         path = ./simple-container;
         description = "A NixOS container running apache-httpd";
