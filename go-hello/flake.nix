@@ -2,7 +2,7 @@
   description = "A simple Go package";
 
   # Nixpkgs / NixOS version to use.
-  inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-21.11/nixexprs.tar.zst";
 
   outputs = { self, nixpkgs }:
     let

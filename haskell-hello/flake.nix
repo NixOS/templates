@@ -1,7 +1,7 @@
 {
   # inspired by: https://serokell.io/blog/practical-nix-flakes#packaging-existing-applications
   description = "A Hello World in Haskell with a dependency and a devShell";
-  inputs.nixpkgs.url = "nixpkgs";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   outputs = { self, nixpkgs }:
     let
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];

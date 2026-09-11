@@ -13,6 +13,9 @@
   # A flake in some absolute path
   # inputs.otherDir.url = "path:/home/alice/src/patchelf";
 
+  # Recommended: nixpkgs zstd tarball using the lockable tarball protocol
+  inputs.nixpkgsLockableTarball.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+
   # The nixpkgs entry in the flake registry.
   inputs.nixpkgsRegistry.url = "nixpkgs";
 

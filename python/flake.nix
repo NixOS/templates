@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   inputs.poetry2nix.url = "github:nix-community/poetry2nix";
 
   outputs = { self, nixpkgs, poetry2nix }:

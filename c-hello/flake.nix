@@ -2,7 +2,7 @@
   description = "An over-engineered Hello World in C";
 
   # Nixpkgs / NixOS version to use.
-  inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-21.05/nixexprs.tar.zst";
 
   outputs = { self, nixpkgs }:
     let
