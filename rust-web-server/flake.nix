@@ -2,7 +2,7 @@
   description = "A Rust web server including a NixOS module";
 
   # Nixpkgs / NixOS version to use.
-  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-21.05/nixexprs.tar.zst";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
 
   inputs.import-cargo.url = "github:edolstra/import-cargo";
 
@@ -109,6 +109,7 @@
               };
 
               makeTest {
+                name = "rust-web-server";
                 nodes = {
                   client = { ... }: {
                     imports = [ self.nixosModules.rust-web-server ];
