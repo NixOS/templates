@@ -1,14 +1,20 @@
 {
   # Based on https://github.com/bobvanderlinden/templates/blob/master/ruby/flake.nix
   # Useage: see README.md
-  
+
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-24.05/nixexprs.tar.zst";
     flake-utils.url = "github:numtide/flake-utils";
-};
+  };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         r10k = pkgs.bundlerEnv {
@@ -17,17 +23,20 @@
           lockfile = ./Gemfile.lock;
           gemset = ./gemset.nix;
         };
-      in {
+      in
+      {
 
-      defaultPackage = r10k;
+        defaultPackage = r10k;
 
-      # used by nix shell and nix develop
-      devShell = with pkgs;
-        mkShell {
-          buildInputs = [
-            ruby
-            bundix
-          ];
-      };
-  });
+        # used by nix shell and nix develop
+        devShell =
+          with pkgs;
+          mkShell {
+            buildInputs = [
+              ruby
+              bundix
+            ];
+          };
+      }
+    );
 }
