@@ -7,10 +7,16 @@
     };
   };
 
-  outputs = { self, flake-compat, flake-compat-ci }: {
-    ciNix = flake-compat-ci.lib.recurseIntoFlakeWith {
-      flake = self;
-      systems = [ "x86_64-linux" ];
+  outputs =
+    {
+      self,
+      flake-compat,
+      flake-compat-ci,
+    }:
+    {
+      ciNix = flake-compat-ci.lib.recurseIntoFlakeWith {
+        flake = self;
+        systems = [ "x86_64-linux" ];
+      };
     };
-  };
 }

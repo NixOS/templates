@@ -4,13 +4,16 @@
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   };
 
-  outputs = inputs:
-    inputs.flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    inputs:
+    inputs.flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = (import (inputs.nixpkgs) { inherit system; });
-      in {
+      in
+      {
         devShell = pkgs.mkShell {
-          buildInputs=[
+          buildInputs = [
             pkgs.nodejs
             pkgs.pnpm
             pkgs.typescript
