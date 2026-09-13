@@ -1,7 +1,7 @@
 {
   description = "Hello World in .NET";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = {
@@ -58,7 +58,7 @@
         };
         devShells = {
           default = pkgs.mkShell {
-            buildInputs = [dotnet-sdk pkgs.git pkgs.alejandra pkgs.nodePackages.markdown-link-check];
+            buildInputs = [dotnet-sdk pkgs.git pkgs.alejandra pkgs.markdown-link-check];
           };
         };
       }

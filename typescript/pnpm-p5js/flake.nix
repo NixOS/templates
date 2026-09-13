@@ -1,7 +1,7 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   };
 
   outputs = inputs:
@@ -11,10 +11,10 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs=[
-            pkgs.nodePackages.nodejs
-            pkgs.nodePackages.pnpm
-            pkgs.nodePackages.typescript
-            pkgs.nodePackages.typescript-language-server
+            pkgs.nodejs
+            pkgs.pnpm
+            pkgs.typescript
+            pkgs.typescript-language-server
           ];
         };
       }
