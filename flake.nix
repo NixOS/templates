@@ -47,7 +47,7 @@
 
       ruby = {
         path = ./ruby;
-        description = "Flake for building ruby gems" ;
+        description = "Flake for building ruby gems";
         welcomeText = ''
           # Simple Ruby Gem Template
           ## Intended usage

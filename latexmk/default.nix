@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> { }, ... }:
+{
+  pkgs ? import <nixpkgs> { },
+  ...
+}:
 
 pkgs.stdenv.mkDerivation {
   name = "pdf";
