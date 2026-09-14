@@ -37,7 +37,7 @@
         let
           pkgs = nixpkgsFor.${system};
         in
-        {
+        rec {
           go-hello = pkgs.buildGoModule {
             pname = "go-hello";
             inherit version;
@@ -57,6 +57,11 @@
 
             vendorHash = null;
           };
+
+          # The default package for 'nix build'. This makes sense if the
+          # flake provides only one package or there is a clear "main"
+          # package.
+          default = go-hello;
         }
       );
 
@@ -77,10 +82,5 @@
           };
         }
       );
-
-      # The default package for 'nix build'. This makes sense if the
-      # flake provides only one package or there is a clear "main"
-      # package.
-      defaultPackage = forAllSystems (system: self.packages.${system}.go-hello);
     };
 }
