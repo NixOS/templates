@@ -35,8 +35,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Find all top-level directories that contain a flake.nix
-          mapfile -t ALL_TEMPLATES < <(find . -maxdepth 2 -name flake.nix -print0 | xargs -0 -n1 dirname | sed 's|^\./||' | grep -v '^\.$' || true)
+          # Find all directories that contain a flake.nix
+          mapfile -t ALL_TEMPLATES < <(find . -name flake.nix -not -path "*/materialized/*" -print0 | xargs -0 -n1 dirname | sed 's|^\./||' | grep -v '^\.$' || true)
           # Ensure unique and sorted
           if [ ${#ALL_TEMPLATES[@]} -gt 0 ]; then
             ALL_TEMPLATES=( $(printf "%s\n" "${ALL_TEMPLATES[@]}" | sort -u) )
@@ -93,15 +93,22 @@ jobs:
             exit 0
           fi
 
-          # Map changed files to top-level dirs and keep only those that are templates
-          mapfile -t TOP_DIRS < <(printf "%s\n" "$CHANGED_FILES" | awk -F/ '{print $1}' | sort -u | sed '/^\s*$/d' || true)
-
+          # Map changed files to template dirs (matching against the known
+          # list of template dirs, since a template may be nested more than
+          # one level deep, e.g. typescript/pnpm)
           SELECTED=()
-          for d in "${TOP_DIRS[@]:-}"; do
-            if [ -n "$d" ] && [ -d "$d" ] && [ -f "$d/flake.nix" ]; then
-              SELECTED+=("$d")
-            fi
-          done
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            for d in "${ALL_TEMPLATES[@]}"; do
+              case "$f" in
+                "$d"/*|"$d")
+                  if [[ ! " ${SELECTED[*]:-} " == *" $d "* ]]; then
+                    SELECTED+=("$d")
+                  fi
+                  ;;
+              esac
+            done
+          done <<< "$CHANGED_FILES"
 
           # If nothing selected, return empty
           if [ ${#SELECTED[@]} -eq 0 ]; then
