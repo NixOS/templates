@@ -78,7 +78,6 @@
   # It is also possible to "inherit" an input from another input. This is useful to minimize
   # flake dependencies. For example, the following sets the nixpkgs input of the top-level flake
   # to be equal to the nixpkgs input of the nixops input of the top-level flake:
-  inputs.nixpkgs.url = "nixpkgs";
   inputs.nixpkgs.follows = "nixops/nixpkgs";
 
   # The value of the follows attribute is a sequence of input names denoting the path
@@ -115,7 +114,7 @@
       checks.x86_64-linux.test = c-hello.checks.x86_64-linux.test;
 
       # Utilized by `nix build .`
-      defaultPackage.x86_64-linux = c-hello.defaultPackage.x86_64-linux;
+      defaultPackage.x86_64-linux = c-hello.packages.x86_64-linux.default;
 
       # Utilized by `nix build`
       packages.x86_64-linux.hello = c-hello.packages.x86_64-linux.hello;
@@ -123,10 +122,10 @@
       # Utilized by `nix run .#<name>`
       apps.x86_64-linux.hello = {
         type = "app";
-        program = c-hello.packages.x86_64-linux.hello;
+        program = "${c-hello.packages.x86_64-linux.hello}/bin/hello";
       };
 
-      # Utilized by `nix bundle -- .#<name>` (should be a .drv input, not program path?)
+      # Utilized by `nix bundle -- .#<name>`
       bundlers.x86_64-linux.example = nix-bundle.bundlers.x86_64-linux.toArx;
 
       # Utilized by `nix bundle -- .#<name>`
@@ -136,7 +135,7 @@
       defaultApp.x86_64-linux = self.apps.x86_64-linux.hello;
 
       # Utilized for nixpkgs packages, also utilized by `nix build .#<name>`
-      legacyPackages.x86_64-linux.hello = c-hello.defaultPackage.x86_64-linux;
+      legacyPackages.x86_64-linux.hello = c-hello.packages.x86_64-linux.default;
 
       # Default overlay, for use in dependent flakes
       overlay = final: prev: { };

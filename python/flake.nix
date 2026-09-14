@@ -1,6 +1,9 @@
 {
-  inputs.nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   inputs.poetry2nix.url = "github:nix-community/poetry2nix";
+  # Follow poetry2nix's own tested nixpkgs, rather than an independently
+  # floating one, to avoid nixpkgs.lib.licenses changes poetry2nix hasn't
+  # caught up with yet (e.g. composite license combinators as functions).
+  inputs.nixpkgs.follows = "poetry2nix/nixpkgs";
 
   outputs =
     {
