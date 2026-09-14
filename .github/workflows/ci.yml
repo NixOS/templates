@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Detect changed template directories
         id: set-matrix
@@ -76,12 +78,8 @@ jobs:
           # If base is all zeros (new branch), compare against default branch
           if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
             DEFAULT_BRANCH=$(jq -r .repository.default_branch "$GITHUB_EVENT_PATH")
-            git fetch origin "$DEFAULT_BRANCH" --depth=1 || true
             BASE_SHA=$(git rev-parse origin/"$DEFAULT_BRANCH")
           fi
-
-          # Ensure refs are available for diff
-          git fetch --no-tags --prune --depth=1 origin || true
 
           CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" || true)
           echo "Changed files:\n$CHANGED_FILES" >&2
@@ -146,14 +144,14 @@ jobs:
           echo "=== nix flake check -- ${{ matrix.dir }} ==="
           cd "${{ matrix.dir }}"
           # run checks; will fail the job if tests fail
-          nix flake check
+          nix flake check --option allow-import-from-derivation true
 
       - name: Run nix flake show
         shell: bash
         run: |
           echo "=== nix flake show -- ${{ matrix.dir }} ==="
           cd "${{ matrix.dir }}"
-          nix flake show
+          nix flake show --option allow-import-from-derivation true
 
 
   lint:

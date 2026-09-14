@@ -11,11 +11,14 @@
       haskellNix,
     }:
     let
+      # x86_64-darwin is excluded: haskell.nix follows nixpkgs-unstable, which
+      # has dropped x86_64-darwin support (see nixpkgs 26.11 release notes).
+      # aarch64-linux and aarch64-darwin are excluded: `nix flake check`
+      # realises hydraJobs derivations (e.g. GHC, spdx-json) for every listed
+      # system, which needs a registered builder for that foreign system that
+      # plain CI runners don't have.
       supportedSystems = [
         "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "aarch64-darwin"
       ];
     in
     flake-utils.lib.eachSystem supportedSystems (
