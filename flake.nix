@@ -74,6 +74,11 @@
         description = "A Hello World in Haskell with one dependency";
       };
 
+      haskell-simple-package = {
+        path = ./haskell-simple-package;
+        description = "A Haskell package with a library, executable and test suite";
+      };
+
       hercules-ci = {
         path = ./hercules-ci;
         description = "An example for Hercules-CI, containing only the necessary attributes for adding to your project.";
