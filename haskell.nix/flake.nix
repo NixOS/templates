@@ -1,6 +1,13 @@
 {
   # This is a template created by `hix init`
-  inputs.haskellNix.url = "github:input-output-hk/haskell.nix";
+  #
+  # haskellNix is pinned to a revision whose nixpkgs-unstable still has
+  # spdx-license-list-data 3.27.0, matching haskell.nix's last materialized
+  # SPDX license cache (haskell.nix/materialized/spdx-3.27.0). Newer
+  # nixpkgs-unstable ships 3.28.0, which haskell.nix hasn't materialized yet,
+  # forcing an IFD (import-from-derivation) rebuild of spdx-json on every
+  # package build.
+  inputs.haskellNix.url = "github:input-output-hk/haskell.nix/adb6e0b1e01d97eadf5ede3c5c7bdbd5ab211e64";
   inputs.nixpkgs.follows = "haskellNix/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   outputs =
@@ -11,12 +18,10 @@
       haskellNix,
     }:
     let
-      # x86_64-darwin is excluded: haskell.nix follows nixpkgs-unstable, which
-      # has dropped x86_64-darwin support (see nixpkgs 26.11 release notes).
-      # aarch64-linux and aarch64-darwin are excluded: `nix flake check`
-      # realises hydraJobs derivations (e.g. GHC, spdx-json) for every listed
-      # system, which needs a registered builder for that foreign system that
-      # plain CI runners don't have.
+      # aarch64-linux is excluded: `nix flake check` realises hydraJobs
+      # derivations (e.g. GHC) for every listed system, which needs a
+      # registered builder for that foreign system that plain CI runners
+      # don't have.
       supportedSystems = [
         "x86_64-linux"
       ];
@@ -56,6 +61,5 @@
     # but remove it here if you do not want it to.
     extra-substituters = [ "https://cache.iog.io" ];
     extra-trusted-public-keys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" ];
-    allow-import-from-derivation = "true";
   };
 }
