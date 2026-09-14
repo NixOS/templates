@@ -5,7 +5,16 @@
   # haskell-nix.compiler.* builds GHC from source via hadrianProject, which
   # always needs IFD to evaluate regardless of GHC version or materialization
   # (confirmed on haskell.nix's own flake, independent of this project).
-  ghcOverride = pkgs.buildPackages.haskell.compiler.ghc967;
+  #
+  # `buildGHC` is set to itself: some builder code paths (e.g. musl's Hoogle
+  # support in builder/default.nix) read `ghc.buildGHC` unconditionally
+  # rather than `ghc.buildGHC or ghc`, and nixpkgs' plain GHC lacks that
+  # passthru attribute.
+  ghcOverride = pkgs.buildPackages.haskell.compiler.ghc967.overrideAttrs (old: {
+    passthru = (old.passthru or { }) // {
+      buildGHC = pkgs.buildPackages.haskell.compiler.ghc967;
+    };
+  });
   plan-sha256 = "08iq08cxmpmp7r29a79jsdp1nl8b42z208q4jmcbqjvjm1p8cfcw";
   materialized = ../materialized/plan.nix;
 
