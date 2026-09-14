@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-20.03/nixexprs.tar.zst";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
 
   outputs = { self, nixpkgs }: {
 
